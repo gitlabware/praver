@@ -81,7 +81,7 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>Camion Ayudantes</label>
-                                            <?php echo $this->Form->text('camion_ayudantes', array('value' => $primerGasto['Parametro']['0']['camion_ayudantes'], 'class' => 'form-control', 'type' => 'number')); ?>                                            
+                                            <?php echo $this->Form->text('camion_ayudantes', array('value' => $primerGasto['Parametro']['0']['camion_ayudantes'], 'class' => 'form-control', 'type' => 'number', 'step'=>'any')); ?>                                            
                                         </div>
                                     </div>
                                     <!--/span-->
@@ -93,14 +93,14 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>Comision Banco</label>
-                                            <?php echo $this->Form->text('comision_banco', array('value' => $primerGasto['Parametro']['0']['comision_banco'], 'class' => 'form-control', 'type' => 'number')); ?>                                            
+                                            <?php echo $this->Form->text('comision_banco', array('value' => $primerGasto['Parametro']['0']['comision_banco'], 'class' => 'form-control', 'type' => 'number', 'step'=>'any')); ?>                                            
                                         </div>
                                     </div>
                                     <!--/span-->
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>Flete Maritimo</label>
-                                            <?php echo $this->Form->text('flete_maritimo', array('value' => $primerGasto['Parametro']['0']['flete_maritimo'], 'class' => 'form-control', 'type' => 'number')); ?>                                            
+                                            <?php echo $this->Form->text('flete_maritimo', array('value' => $primerGasto['Parametro']['0']['flete_maritimo'], 'class' => 'form-control', 'type' => 'number', 'step'=>'any')); ?>                                            
                                         </div>
                                     </div>
                                     <!--/span-->
