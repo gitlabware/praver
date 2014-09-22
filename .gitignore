@@ -4,6 +4,7 @@
 /app/Config/database.php
 /app/tmp
 /nbproject
+/lib/Cake
 
 # OS generated files #
 ######################
