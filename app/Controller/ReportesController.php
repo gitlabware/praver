@@ -84,7 +84,13 @@ class ReportesController extends AppController
             $tipo = $this->request->data['Reporte']['tipo'];
             $idProducto = $this->request->data['Reporte']['producto'];
             $condiciones = array();
-            $condiciones['date(Movimiento.created) BETWEEN ? AND ?'] = array($fecha_ini,$fecha_fin);
+            if(empty($fecha_ini))
+            {
+                $condiciones['date(Movimiento.created) <='] = $fecha_fin;
+            }
+            else{
+               $condiciones['date(Movimiento.created) BETWEEN ? AND ?'] = array($fecha_ini,$fecha_fin); 
+            }
             if($idAlmacen != 0)
             {
                 $condiciones['Movimiento.almacene_id'] = $idAlmacen;
@@ -99,6 +105,42 @@ class ReportesController extends AppController
             }
             $movimientos = $this->Movimiento->find('all',array('conditions' => $condiciones));
             
+            $this->set(compact('movimientos','fecha_ini','fecha_fin','tipo'));
+        }
+        else{
+            $this->Session->setFlash('No se puede generar sin datos','msgbueno');
+            $this->redirect($this->referer());
+        }
+    }
+    public function reporteinventario_totales()
+    {
+        //debug($this->request->data);exit;
+        if(!empty($this->request->data))
+        {
+            $fecha_ini = $this->request->data['Reporte']['fecha_ini'];
+            $fecha_fin = $this->request->data['Reporte']['fecha_fin'];
+            $idAlmacen = $this->request->data['Reporte']['almacene_id'];
+            
+            $condiciones = array();
+            if(empty($fecha_ini))
+            {
+                $condiciones['date(Movimiento.created) <='] = $fecha_fin;
+            }
+            else{
+               $condiciones['date(Movimiento.created) BETWEEN ? AND ?'] = array($fecha_ini,$fecha_fin); 
+            }
+            if($idAlmacen != 0)
+            {
+                $condiciones['Movimiento.almacene_id'] = $idAlmacen;
+            }
+            $movimientos = $this->Movimiento->find('all'
+                    ,array(
+                        'conditions' => $condiciones,
+                        'group' => array('Movimiento.producto_id'),
+                        'fields' => array('Producto.nombre','SUM(Movimiento.ingreso) total_ingreso','SUM(Movimiento.salida) total_salida')
+                    )
+                    );
+            debug($movimientos);exit;
             $this->set(compact('movimientos','fecha_ini','fecha_fin','tipo'));
         }
         else{
@@ -124,7 +166,13 @@ class ReportesController extends AppController
                 $condiciones['Item.producto_id'] = $idProducto;
             }
             $condiciones['Pedido.estado'] = 'VENDIDO';
-            $condiciones['date(Pedido.modified) BETWEEN ? AND ?'] = array($fecha_ini,$fecha_fin);
+            if(empty($fecha_ini))
+            {
+                $condiciones['date(Pedido.modified) <='] = $fecha_fin;
+            }
+            else{
+               $condiciones['date(Pedido.modified) BETWEEN ? AND ?'] = array($fecha_ini,$fecha_fin);
+            }
             $this->Pedido->unbindModel(array('hasMany' => array('Movimiento','Item'),'belongsTo' => array('User')));
             $items = $this->Item->find('all',array('recursive' => 2,'conditions' => $condiciones));
             //debug($items);exit;
@@ -178,7 +226,13 @@ class ReportesController extends AppController
                 $condiciones['Pedido.cliente_id'] = $cliente;
             }
             $condiciones['Pedido.estado'] = 'VENDIDO';
-            $condiciones['date(Pedido.modified) BETWEEN ? AND ?'] = array($fecha_ini,$fecha_fin);
+            if(empty($fecha_ini))
+            {
+                $condiciones['date(Pedido.modified) <='] = $fecha_fin;
+            }
+            else{
+               $condiciones['date(Pedido.modified) BETWEEN ? AND ?'] = array($fecha_ini,$fecha_fin);
+            }
             $pedidos = $this->Pedido->find('all',array( 'conditions' => $condiciones));
             //debug($pedidos);exit;
             $this->set(compact('pedidos','fecha_ini','fecha_fin'));
@@ -195,7 +249,13 @@ class ReportesController extends AppController
             $fecha_ini = $this->request->data['Reporte']['fecha_ini'];
             $fecha_fin = $this->request->data['Reporte']['fecha_fin'];
             $condiciones = array();
-            $condiciones['Pago.created BETWEEN ? AND ?'] = array($fecha_ini,$fecha_fin);
+            if(empty($fecha_ini))
+            {
+                $condiciones['Pago.created <='] = $fecha_fin;
+            }
+            else{
+               $condiciones['Pago.created BETWEEN ? AND ?'] = array($fecha_ini,$fecha_fin);
+            }
             $condiciones['Pago.detalle_id !='] = 'NULL';
             $pagos = $this->Pago->find('all',array('conditions' => $condiciones));
             $this->set(compact('pagos','fecha_ini','fecha_fin'));

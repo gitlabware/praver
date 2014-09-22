@@ -143,7 +143,7 @@ $modeloitem = new Item();
                 <div class="row">
                     <div class="col-md-2 form-group">
                     <label>Desde</label>
-                    <?php echo $this->Form->date('fecha_ini',array('class' => 'form-control','required'));?>
+                    <?php echo $this->Form->date('fecha_ini',array('class' => 'form-control'));?>
                     </div>
                     <div class="col-md-2 form-group">
                     <label>Hasta</label>
@@ -162,6 +162,11 @@ $modeloitem = new Item();
                     <?php echo $this->Form->select('tipo',array('Todos' => 'TODOS','Ingreso' => 'INGRESO','Salida' => 'SALIDA'),array('class' => 'form-control','required'));?>
                     </div>
                 </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <span>Para fecha de origen dejar el campo "DESDE" vacio.</span>
+                    </div>
+                </div>
             </div>
             <div class="form-actions">
             <?php echo $this->Form->submit('Generar Reporte',array('class' => 'btn btn-primary'));?>
@@ -169,6 +174,42 @@ $modeloitem = new Item();
             <?php echo $this->Form->end();?>
         </div>
     </div>
+        
+    <div class="portlet box green">
+        <div class="portlet-title">
+            <div class="caption">Reporte de Inventario (Totales)</div>
+        </div>
+        <div class="portlet-body form">
+        <?php echo $this->Form->create('Reporte',array('action' => 'reporteinventario_totales'));?>
+            <div class="form-body">
+                <div class="row">
+                    <div class="col-md-4 form-group">
+                    <label>Desde</label>
+                    <?php echo $this->Form->date('fecha_ini',array('class' => 'form-control'));?>
+                    </div>
+                    <div class="col-md-4 form-group">
+                    <label>Hasta</label>
+                    <?php echo $this->Form->date('fecha_fin',array('class' => 'form-control','required'));?>
+                    </div>
+                    <div class="col-md-4 form-group">
+                    <label>Almacen</label>
+                    <?php echo $this->Form->select('almacene_id',$listalmacenes,array('class' => 'form-control','required'));?>
+                    </div>
+                    
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <span>Para fecha de origen dejar el campo "DESDE" vacio.</span>
+                    </div>
+                </div>
+            </div>
+            <div class="form-actions">
+            <?php echo $this->Form->submit('Generar Reporte',array('class' => 'btn btn-success'));?>
+            </div>
+            <?php echo $this->Form->end();?>
+        </div>
+    </div>    
+        
     <div class="portlet box blue">
         <div class="portlet-title">
             <div class="caption">Reporte de Ventas por Productos</div>
@@ -179,7 +220,7 @@ $modeloitem = new Item();
                 <div class="row">
                     <div class="col-md-3 form-group">
                     <label>Desde</label>
-                    <?php echo $this->Form->date('fecha_ini',array('class' => 'form-control','required'));?>
+                    <?php echo $this->Form->date('fecha_ini',array('class' => 'form-control'));?>
                     </div>
                     <div class="col-md-3 form-group">
                     <label>Hasta</label>
@@ -192,6 +233,11 @@ $modeloitem = new Item();
                     <div class="col-md-3 form-group">
                     <label>Producto</label>
                     <?php echo $this->Form->select('producto',$productos,array('class' => 'form-control','required'));?>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <span>Para fecha de origen dejar el campo "DESDE" vacio.</span>
                     </div>
                 </div>
             </div>
@@ -211,7 +257,7 @@ $modeloitem = new Item();
                 <div class="row">
                     <div class="col-md-3 form-group">
                     <label>Desde</label>
-                    <?php echo $this->Form->date('fecha_ini',array('class' => 'form-control','required'));?>
+                    <?php echo $this->Form->date('fecha_ini',array('class' => 'form-control'));?>
                     </div>
                     <div class="col-md-3 form-group">
                     <label>Hasta</label>
@@ -224,6 +270,11 @@ $modeloitem = new Item();
                     <div class="col-md-3 form-group">
                     <label>Producto</label>
                     <?php echo $this->Form->select('producto',$productos,array('class' => 'form-control','required'));?>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <span>Para fecha de origen dejar el campo "DESDE" vacio.</span>
                     </div>
                 </div>
             </div>
@@ -243,7 +294,7 @@ $modeloitem = new Item();
                 <div class="row">
                     <div class="col-md-4 form-group">
                     <label>Desde</label>
-                    <?php echo $this->Form->date('fecha_ini',array('class' => 'form-control','required'));?>
+                    <?php echo $this->Form->date('fecha_ini',array('class' => 'form-control'));?>
                     </div>
                     <div class="col-md-4 form-group">
                     <label>Hasta</label>
@@ -254,6 +305,11 @@ $modeloitem = new Item();
                     <?php echo $this->Form->select('cliente',$clientes,array('class' => 'form-control','required'));?>
                     </div>
                     
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <span>Para fecha de origen dejar el campo "DESDE" vacio.</span>
+                    </div>
                 </div>
             </div>
             <div class="form-actions">
@@ -272,7 +328,7 @@ $modeloitem = new Item();
                 <div class="row">
                     <div class="col-md-6 form-group">
                     <label>Desde</label>
-                    <?php echo $this->Form->date('fecha_ini',array('class' => 'form-control','required'));?>
+                    <?php echo $this->Form->date('fecha_ini',array('class' => 'form-control'));?>
                     </div>
                     <div class="col-md-6 form-group">
                     <label>Hasta</label>
@@ -280,6 +336,11 @@ $modeloitem = new Item();
                     </div>
                     
                     
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <span>Para fecha de origen dejar el campo "DESDE" vacio.</span>
+                    </div>
                 </div>
             </div>
             <div class="form-actions">

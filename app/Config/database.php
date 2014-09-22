@@ -60,14 +60,13 @@
  * For Sql Server : http://msdn.microsoft.com/en-us/library/ms190356.aspx
  */
 class DATABASE_CONFIG {
-
 	public $default = array(
 		'datasource' => 'Database/Mysql',
 		'persistent' => false,
 		'host' => 'localhost',
-		'login' => 'praver_usp',
-		'password' => '5Bn*J@knfdLv6g@',
-		'database' => 'praver_ssis',
+		'login' => 'root',
+		'password' => 'root',
+		'database' => 'praver',
 		'prefix' => '',
 		//'encoding' => 'utf8',
 	);

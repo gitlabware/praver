@@ -1,5 +1,6 @@
 # User specific & automatically generated files #
 #################################################
+/lib
 /app/Config/database.php
 /app/tmp
 /nbproject
