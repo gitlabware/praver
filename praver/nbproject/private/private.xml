@@ -21,7 +21,7 @@
             <file>file:/var/www/html/Praver/app/Config/database.php</file>
             <file>file:/var/www/html/Praver/app/Controller/ReportesController.php</file>
             <file>file:/var/www/html/Praver/app/View/Reportes/index.ctp</file>
-            <file>file:/var/www/html/Praver/app/View/Reportes/reporteinventario_totales.php</file>
+            <file>file:/var/www/html/Praver/app/View/Reportes/reporte_ventas.ctp</file>
         </group>
     </open-files>
 </project-private>

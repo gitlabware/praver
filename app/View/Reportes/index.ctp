@@ -63,6 +63,35 @@ $modeloitem = new Item();
                      </div>
                   </div>
      </div>
+        <div class="portlet box blue">
+        <div class="portlet-title">
+            <div class="caption">Cantidades Totales en Todos los Almacenes</div>
+        </div>
+        <div class="portlet-body">
+            <table class="table">
+                <thead>
+                <th>Producto</th>
+                <?php foreach($almacenes as $al):?>
+                <th><?php echo $al['Almacene']['nombre']?></th>
+                <?php endforeach;?>
+                <th>Total</th>
+                </thead>
+                <tbody>
+                    <?php foreach ($productos_chart as $pro):?>
+                    <?php $total_producto = 0;?>
+                    <tr>
+                        <td><?php echo $pro['Producto']['nombre']?></td>
+                        <?php foreach($almacenes as $al):?>
+                        <td><?php echo $cantidad = $this->requestAction(array('action' => 'consulta_total_alamacen',$pro['Producto']['id'],$al['Almacene']['id']));?></td>
+                        <?php $total_producto=$cantidad+$total_producto;?>
+                        <?php endforeach;?>
+                        <td><?php echo $total_producto;?></td>
+                    </tr>
+                    <?php endforeach;?>
+                </tbody>
+            </table>
+        </div>
+    </div>
     <div class="portlet box blue">
                   <div class="portlet-title">
                      <div class="caption"><i class="icon-reorder"></i>Torta de ventas de Productos</div>
@@ -174,42 +203,7 @@ $modeloitem = new Item();
             <?php echo $this->Form->end();?>
         </div>
     </div>
-        
-    <div class="portlet box green">
-        <div class="portlet-title">
-            <div class="caption">Reporte de Inventario (Totales)</div>
-        </div>
-        <div class="portlet-body form">
-        <?php echo $this->Form->create('Reporte',array('action' => 'reporteinventario_totales'));?>
-            <div class="form-body">
-                <div class="row">
-                    <div class="col-md-4 form-group">
-                    <label>Desde</label>
-                    <?php echo $this->Form->date('fecha_ini',array('class' => 'form-control'));?>
-                    </div>
-                    <div class="col-md-4 form-group">
-                    <label>Hasta</label>
-                    <?php echo $this->Form->date('fecha_fin',array('class' => 'form-control','required'));?>
-                    </div>
-                    <div class="col-md-4 form-group">
-                    <label>Almacen</label>
-                    <?php echo $this->Form->select('almacene_id',$listalmacenes,array('class' => 'form-control','required'));?>
-                    </div>
-                    
-                </div>
-                <div class="row">
-                    <div class="col-md-12">
-                        <span>Para fecha de origen dejar el campo "DESDE" vacio.</span>
-                    </div>
-                </div>
-            </div>
-            <div class="form-actions">
-            <?php echo $this->Form->submit('Generar Reporte',array('class' => 'btn btn-success'));?>
-            </div>
-            <?php echo $this->Form->end();?>
-        </div>
-    </div>    
-        
+       
     <div class="portlet box blue">
         <div class="portlet-title">
             <div class="caption">Reporte de Ventas por Productos</div>
@@ -305,6 +299,35 @@ $modeloitem = new Item();
                     <?php echo $this->Form->select('cliente',$clientes,array('class' => 'form-control','required'));?>
                     </div>
                     
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <span>Para fecha de origen dejar el campo "DESDE" vacio.</span>
+                    </div>
+                </div>
+            </div>
+            <div class="form-actions">
+            <?php echo $this->Form->submit('Generar Reporte',array('class' => 'btn btn-primary'));?>
+            </div>
+            <?php echo $this->Form->end();?>
+        </div>
+    </div>
+    <div class="portlet box blue">
+        <div class="portlet-title">
+            <div class="caption">Reporte de Ventas</div>
+        </div>
+        <div class="portlet-body form">
+        <?php echo $this->Form->create('Reporte',array('action' => 'reporte_ventas'));?>
+            <div class="form-body">
+                <div class="row">
+                    <div class="col-md-4 form-group">
+                    <label>Desde</label>
+                    <?php echo $this->Form->date('fecha_ini',array('class' => 'form-control'));?>
+                    </div>
+                    <div class="col-md-4 form-group">
+                    <label>Hasta</label>
+                    <?php echo $this->Form->date('fecha_fin',array('class' => 'form-control','required'));?>
+                    </div>
                 </div>
                 <div class="row">
                     <div class="col-md-12">
