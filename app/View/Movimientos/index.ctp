@@ -66,6 +66,9 @@ $modeloMovimientos = new Movimiento();
                                 <a  data-toggle="modal" href="#modaluno" onclick="$('#contenidomodaluno').load('<?php echo $this->Html->url(array('controller' => 'Movimientos', 'action' => 'registros', $pro['Producto']['id'])); ?>');"title="registrar Almacen">
                                     <?php echo $this->Html->image('iconos/registro.png'); ?>
                                 </a>
+                                <a  data-toggle="modal" href="#modaluno" onclick="$('#contenidomodaluno').load('<?php echo $this->Html->url(array('action' => 'ajaxproducto',$pro['Producto']['id']));?>');"title="Editar Producto">
+                                      <?php echo $this->Html->image('iconos/edit.png'); ?>
+                                  </a> 
                             </td>
                         </tr>
 

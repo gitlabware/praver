@@ -1064,6 +1064,24 @@ class MovimientosController extends AppController {
         //debug($productos_chart);exit;
         $this->set(compact('almacenes','idAlmacen','productos_chart','cantidadVentas', 'cantidadPedidos', 'cantidadProductos', 'ultimosProductos', 'ultimosPedidos'));
     }
+    public function ajaxproducto($idProducto = null)
+    {
+        $this->layout = 'ajax';
+        $this->Producto->id = $idProducto;
+        $this->request->data = $this->Producto->read();
+        
+    }
+    public function guardaproducto()
+    {
+        if(!empty($this->request->data['Producto']))
+        {
+            $this->Producto->create();
+            $this->Producto->save($this->request->data['Producto']);
+            $this->Session->setFlash('Se guardo correctamente!!!!','msgbueno');
+        }
+        else{
+            $this->Session->setFlash('No se pudo guardar!!!','msgerror');
+        }
+        $this->redirect($this->referer());
+    }
 }
-
-?>
